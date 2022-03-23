@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBServiceProviderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminSp_plan">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sub_name" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="duration" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Area_master">
+          <Key>
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="area_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city_id" Type="int" />
+          <Property Name="area_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Charge_rate">
+          <Key>
+            <PropertyRef Name="charge_id" />
+          </Key>
+          <Property Name="charge_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sp_id" Type="int" />
+          <Property Name="sptype_id" Type="int" />
+          <Property Name="amount" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="City_master">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city_name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userreq_id" Type="int" />
+          <Property Name="amount" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="extra_amount" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="totamount" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="payment_mode" Type="varchar" MaxLength="10" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Plan_Enroll">
+          <Key>
+            <PropertyRef Name="planenroll_id" />
+          </Key>
+          <Property Name="planenroll_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="sp_id" Type="int" />
+          <Property Name="plan_status" Type="varchar" MaxLength="50" />
+          <Property Name="plan_id" Type="int" />
+          <Property Name="plan_date" Type="datetime" />
+          <Property Name="planend_date" Type="datetime" />
+          <Property Name="description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Plan_maintanance">
+          <Key>
+            <PropertyRef Name="planmaintain_id" />
+          </Key>
+          <Property Name="planmaintain_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="plan_id" Type="int" />
+          <Property Name="planenroll_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="installment_amount" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="service_date" Type="datetime" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="extra_charge" Type="numeric" Precision="7" Scale="2" />
+        </EntityType>
+        <EntityType Name="Serviceprovider_regis">
+          <Key>
+            <PropertyRef Name="sp_id" />
+          </Key>
+          <Property Name="sp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sp_fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_logo" Type="varchar(max)" />
+          <Property Name="sp_gender" Type="varchar" MaxLength="10" />
+          <Property Name="sp_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_mobile" Type="numeric" Precision="13" Scale="0" />
+          <Property Name="sptype_id" Type="int" />
+          <Property Name="spregis_date" Type="datetime" />
+          <Property Name="sp_status" Type="varchar" MaxLength="10" />
+          <Property Name="address" Type="varchar(max)" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ServiceproviderType">
+          <Key>
+            <PropertyRef Name="sptype_id" />
+          </Key>
+          <Property Name="sptype_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sptype_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sp_plan_Enroll">
+          <Key>
+            <PropertyRef Name="sp_plan_id" />
+          </Key>
+          <Property Name="sp_plan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sub_id" Type="int" />
+          <Property Name="startdate" Type="datetime" />
+          <Property Name="enddate" Type="datetime" />
+          <Property Name="Otpnumber" Type="int" />
+          <Property Name="sp_id" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tbl_plan">
+          <Key>
+            <PropertyRef Name="plan_id" />
+          </Key>
+          <Property Name="plan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sp_id" Type="int" />
+          <Property Name="plan_name" Type="varchar" MaxLength="50" />
+          <Property Name="plan_description" Type="varchar(max)" />
+          <Property Name="installment" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="no_of_services" Type="int" />
+          <Property Name="plan_benifits" Type="varchar(max)" />
+          <Property Name="plan_status" Type="varchar" MaxLength="10" />
+          <Property Name="charges" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="plan_duration" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblAdminLogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_complaint">
+          <Key>
+            <PropertyRef Name="complaint_id" />
+          </Key>
+          <Property Name="complaint_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="plan_id" Type="int" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User_regis">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="mobile" Type="numeric" Precision="13" Scale="0" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="address" Type="varchar(max)" />
+          <Property Name="city_id" Type="int" />
+          <Property Name="area_id" Type="int" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_img" Type="varchar(max)" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="user_request">
+          <Key>
+            <PropertyRef Name="userreq_id" />
+          </Key>
+          <Property Name="userreq_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sptype_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="req_data" Type="varchar" MaxLength="20" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="sp_id" Type="int" />
+          <Property Name="token" Type="int" />
+          <Property Name="processdate" Type="datetime" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="enddate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User_request_type">
+          <Key>
+            <PropertyRef Name="reqtype_id" />
+          </Key>
+          <Property Name="reqtype_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reqtype_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="User_review">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userreq_id" Type="int" />
+          <Property Name="sp_id" Type="int" />
+          <Property Name="review_desc" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="DBServiceProviderModelStoreContainer">
+          <EntitySet Name="AdminSp_plan" EntityType="Self.AdminSp_plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Area_master" EntityType="Self.Area_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Charge_rate" EntityType="Self.Charge_rate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City_master" EntityType="Self.City_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plan_Enroll" EntityType="Self.Plan_Enroll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plan_maintanance" EntityType="Self.Plan_maintanance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Serviceprovider_regis" EntityType="Self.Serviceprovider_regis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceproviderType" EntityType="Self.ServiceproviderType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sp_plan_Enroll" EntityType="Self.Sp_plan_Enroll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_plan" EntityType="Self.Tbl_plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAdminLogin" EntityType="Self.tblAdminLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_complaint" EntityType="Self.User_complaint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_regis" EntityType="Self.User_regis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_request" EntityType="Self.user_request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_request_type" EntityType="Self.User_request_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_review" EntityType="Self.User_review" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBServiceProviderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminSp_plan">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sub_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="duration" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Area_master">
+          <Key>
+            <PropertyRef Name="area_id" />
+          </Key>
+          <Property Name="area_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city_id" Type="Int32" />
+          <Property Name="area_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Charge_rate">
+          <Key>
+            <PropertyRef Name="charge_id" />
+          </Key>
+          <Property Name="charge_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sp_id" Type="Int32" />
+          <Property Name="sptype_id" Type="Int32" />
+          <Property Name="amount" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="City_master">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userreq_id" Type="Int32" />
+          <Property Name="amount" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="extra_amount" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="totamount" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="payment_mode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Plan_Enroll">
+          <Key>
+            <PropertyRef Name="planenroll_id" />
+          </Key>
+          <Property Name="planenroll_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="sp_id" Type="Int32" />
+          <Property Name="plan_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="plan_id" Type="Int32" />
+          <Property Name="plan_date" Type="DateTime" Precision="3" />
+          <Property Name="planend_date" Type="DateTime" Precision="3" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Plan_maintanance">
+          <Key>
+            <PropertyRef Name="planmaintain_id" />
+          </Key>
+          <Property Name="planmaintain_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="plan_id" Type="Int32" />
+          <Property Name="planenroll_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="installment_amount" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="service_date" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="extra_charge" Type="Decimal" Precision="7" Scale="2" />
+        </EntityType>
+        <EntityType Name="Serviceprovider_regis">
+          <Key>
+            <PropertyRef Name="sp_id" />
+          </Key>
+          <Property Name="sp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sp_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sp_gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sp_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_mobile" Type="Decimal" Precision="13" Scale="0" />
+          <Property Name="sptype_id" Type="Int32" />
+          <Property Name="spregis_date" Type="DateTime" Precision="3" />
+          <Property Name="sp_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ServiceproviderType">
+          <Key>
+            <PropertyRef Name="sptype_id" />
+          </Key>
+          <Property Name="sptype_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sptype_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Sp_plan_Enroll">
+          <Key>
+            <PropertyRef Name="sp_plan_id" />
+          </Key>
+          <Property Name="sp_plan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sub_id" Type="Int32" />
+          <Property Name="startdate" Type="DateTime" Precision="3" />
+          <Property Name="enddate" Type="DateTime" Precision="3" />
+          <Property Name="Otpnumber" Type="Int32" />
+          <Property Name="sp_id" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_plan">
+          <Key>
+            <PropertyRef Name="plan_id" />
+          </Key>
+          <Property Name="plan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sp_id" Type="Int32" />
+          <Property Name="plan_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="plan_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="installment" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="no_of_services" Type="Int32" />
+          <Property Name="plan_benifits" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="plan_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="charges" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="plan_duration" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblAdminLogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_complaint">
+          <Key>
+            <PropertyRef Name="complaint_id" />
+          </Key>
+          <Property Name="complaint_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="plan_id" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User_regis">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="Decimal" Precision="13" Scale="0" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="city_id" Type="Int32" />
+          <Property Name="area_id" Type="Int32" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="user_request">
+          <Key>
+            <PropertyRef Name="userreq_id" />
+          </Key>
+          <Property Name="userreq_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sptype_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="req_data" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sp_id" Type="Int32" />
+          <Property Name="token" Type="Int32" />
+          <Property Name="processdate" Type="DateTime" Precision="3" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="enddate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User_request_type">
+          <Key>
+            <PropertyRef Name="reqtype_id" />
+          </Key>
+          <Property Name="reqtype_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reqtype_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User_review">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userreq_id" Type="Int32" />
+          <Property Name="sp_id" Type="Int32" />
+          <Property Name="review_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DBServiceProviderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminSp_plan" EntityType="Self.AdminSp_plan" />
+          <EntitySet Name="Area_master" EntityType="Self.Area_master" />
+          <EntitySet Name="Charge_rate" EntityType="Self.Charge_rate" />
+          <EntitySet Name="City_master" EntityType="Self.City_master" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Plan_Enroll" EntityType="Self.Plan_Enroll" />
+          <EntitySet Name="Plan_maintanance" EntityType="Self.Plan_maintanance" />
+          <EntitySet Name="Serviceprovider_regis" EntityType="Self.Serviceprovider_regis" />
+          <EntitySet Name="ServiceproviderTypes" EntityType="Self.ServiceproviderType" />
+          <EntitySet Name="Sp_plan_Enroll" EntityType="Self.Sp_plan_Enroll" />
+          <EntitySet Name="Tbl_plan" EntityType="Self.Tbl_plan" />
+          <EntitySet Name="tblAdminLogins" EntityType="Self.tblAdminLogin" />
+          <EntitySet Name="User_complaint" EntityType="Self.User_complaint" />
+          <EntitySet Name="User_regis" EntityType="Self.User_regis" />
+          <EntitySet Name="user_request" EntityType="Self.user_request" />
+          <EntitySet Name="User_request_type" EntityType="Self.User_request_type" />
+          <EntitySet Name="User_review" EntityType="Self.User_review" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBServiceProviderModelStoreContainer" CdmEntityContainer="DBServiceProviderEntities">
+          <EntitySetMapping Name="AdminSp_plan">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.AdminSp_plan">
+              <MappingFragment StoreEntitySet="AdminSp_plan">
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Area_master">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.Area_master">
+              <MappingFragment StoreEntitySet="Area_master">
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="area_name" ColumnName="area_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Charge_rate">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.Charge_rate">
+              <MappingFragment StoreEntitySet="Charge_rate">
+                <ScalarProperty Name="charge_id" ColumnName="charge_id" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="sptype_id" ColumnName="sptype_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City_master">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.City_master">
+              <MappingFragment StoreEntitySet="City_master">
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="userreq_id" ColumnName="userreq_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="extra_amount" ColumnName="extra_amount" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="totamount" ColumnName="totamount" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="payment_mode" ColumnName="payment_mode" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plan_Enroll">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.Plan_Enroll">
+              <MappingFragment StoreEntitySet="Plan_Enroll">
+                <ScalarProperty Name="planenroll_id" ColumnName="planenroll_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="plan_status" ColumnName="plan_status" />
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+                <ScalarProperty Name="plan_date" ColumnName="plan_date" />
+                <ScalarProperty Name="planend_date" ColumnName="planend_date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plan_maintanance">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.Plan_maintanance">
+              <MappingFragment StoreEntitySet="Plan_maintanance">
+                <ScalarProperty Name="planmaintain_id" ColumnName="planmaintain_id" />
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+                <ScalarProperty Name="planenroll_id" ColumnName="planenroll_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="installment_amount" ColumnName="installment_amount" />
+                <ScalarProperty Name="service_date" ColumnName="service_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="extra_charge" ColumnName="extra_charge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Serviceprovider_regis">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.Serviceprovider_regis">
+              <MappingFragment StoreEntitySet="Serviceprovider_regis">
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="sp_fname" ColumnName="sp_fname" />
+                <ScalarProperty Name="sp_lname" ColumnName="sp_lname" />
+                <ScalarProperty Name="sp_logo" ColumnName="sp_logo" />
+                <ScalarProperty Name="sp_gender" ColumnName="sp_gender" />
+                <ScalarProperty Name="sp_email" ColumnName="sp_email" />
+                <ScalarProperty Name="sp_mobile" ColumnName="sp_mobile" />
+                <ScalarProperty Name="sptype_id" ColumnName="sptype_id" />
+                <ScalarProperty Name="spregis_date" ColumnName="spregis_date" />
+                <ScalarProperty Name="sp_status" ColumnName="sp_status" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceproviderTypes">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.ServiceproviderType">
+              <MappingFragment StoreEntitySet="ServiceproviderType">
+                <ScalarProperty Name="sptype_id" ColumnName="sptype_id" />
+                <ScalarProperty Name="sptype_name" ColumnName="sptype_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sp_plan_Enroll">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.Sp_plan_Enroll">
+              <MappingFragment StoreEntitySet="Sp_plan_Enroll">
+                <ScalarProperty Name="sp_plan_id" ColumnName="sp_plan_id" />
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="Otpnumber" ColumnName="Otpnumber" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_plan">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.Tbl_plan">
+              <MappingFragment StoreEntitySet="Tbl_plan">
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+                <ScalarProperty Name="plan_description" ColumnName="plan_description" />
+                <ScalarProperty Name="installment" ColumnName="installment" />
+                <ScalarProperty Name="no_of_services" ColumnName="no_of_services" />
+                <ScalarProperty Name="plan_benifits" ColumnName="plan_benifits" />
+                <ScalarProperty Name="plan_status" ColumnName="plan_status" />
+                <ScalarProperty Name="charges" ColumnName="charges" />
+                <ScalarProperty Name="plan_duration" ColumnName="plan_duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdminLogins">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.tblAdminLogin">
+              <MappingFragment StoreEntitySet="tblAdminLogin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_complaint">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.User_complaint">
+              <MappingFragment StoreEntitySet="User_complaint">
+                <ScalarProperty Name="complaint_id" ColumnName="complaint_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_regis">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.User_regis">
+              <MappingFragment StoreEntitySet="User_regis">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_img" ColumnName="user_img" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_request">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.user_request">
+              <MappingFragment StoreEntitySet="user_request">
+                <ScalarProperty Name="userreq_id" ColumnName="userreq_id" />
+                <ScalarProperty Name="sptype_id" ColumnName="sptype_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="req_data" ColumnName="req_data" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="processdate" ColumnName="processdate" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_request_type">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.User_request_type">
+              <MappingFragment StoreEntitySet="User_request_type">
+                <ScalarProperty Name="reqtype_id" ColumnName="reqtype_id" />
+                <ScalarProperty Name="reqtype_name" ColumnName="reqtype_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_review">
+            <EntityTypeMapping TypeName="DBServiceProviderModel.User_review">
+              <MappingFragment StoreEntitySet="User_review">
+                <ScalarProperty Name="review_id" ColumnName="review_id" />
+                <ScalarProperty Name="userreq_id" ColumnName="userreq_id" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="review_desc" ColumnName="review_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

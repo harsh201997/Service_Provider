@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "UpdateSpType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UpdateSpType</h2>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Service Provider Type
+            </header>
+            <div class="panel-body">
+                <div class="position-center">
+                    <link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+                    <script src="~/bvalidator/jquery-1.11.0.min.js"></script>
+                    <script src="~/bvalidator/jquery.bvalidator.js"></script>
+
+                    <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $('#form2').bValidator();
+                                    });
+                    </script>
+                    @using (Html.BeginForm("UpdateSpType", "Admin", FormMethod.Post, new { @id = "form2" }))
+                    {
+                        var p = ViewData["temp"] as AMC.EDM.ServiceproviderType;
+                        
+                            
+                        
+                        <div class="form-group">
+                            <label>Service Name:</label>
+                            <input type="text" class="form-control" data-bvalidator="required" value="@p.sptype_name" name="sptype" placeholder="Service Provider Type">
+                            <input type="hidden" value="@p.sptype_id" name="sptypeid"/>
+
+                        </div>
+                       
+                        <input type="submit" value="Submit" class="btn btn-info" />
+                        @ViewBag.msg
+
+                    }
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    
+</div>

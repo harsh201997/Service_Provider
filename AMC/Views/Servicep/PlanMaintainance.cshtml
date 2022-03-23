@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Complain Detail";
+    Layout = "~/Views/Shared/sproviderlayout.cshtml";
+}
+
+<link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/bvalidator/jquery.bvalidator.js"></script>
+
+<title>Plan Payment</title>
+<script>
+    $(document).ready(function () {
+        $('#form2').bValidator();
+        $("#plan").change(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "/Servicep/getdata",
+                data: { "cid": $("#plan").val() },
+                success: function (data) {
+                    $("#customer").empty();
+                    $.each(data, function (key, dept) {
+
+                        $("#customer").append("<option value=" + dept.planenroll_id + ">" + dept.fname + "</option>")
+                        $("#amt").val(dept.installment);
+
+                    })
+                }
+            })
+        });
+
+        $("#customer").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Servicep/getdata1",
+                data: { "cid": $("#customer").val() },
+                success: function (data) {
+
+                    $.each(data, function (key, dept) {
+
+
+                        alert(dept.user_id);
+                        $("#hid").val(dept.user_id);
+
+                    })
+                }
+            })
+        });
+    })
+
+</script>
+
+
+<div class="form-w3layouts">
+    <!-- page start-->
+    <!-- page start-->
+    <div class="row">
+        <div class="col-lg-12">
+
+            <header class="panel-heading">
+                Plan Payment
+            </header>
+            <div class="panel-body">
+                <div class="position-center">
+                    @using (Html.BeginForm("PlanMaintainance", "ServiceP", FormMethod.Post, new { @id = "form2" }))
+                    {
+                        <div class="form-group">
+                            <label> Plan Name:</label>
+                            <select name="pname" data-bvalidator="required" class="form-control" id="plan">
+                                <option value="">Select</option>
+                                @foreach (var item in ViewData["Temp"] as List<AMC.EDM.Tbl_plan>)
+                                {
+                                    <option value="@item.plan_id">@item.plan_name</option>
+
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label> Customer Name:</label>
+                            <select name="cname" data-bvalidator="required" class="form-control" id="customer">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pname"> Plan Service Date:</label>
+                            <input type="date" name="date" data-bvalidator="required" class="form-control" id="servicedate">
+                        </div>
+                        <div class="form-group">
+                            <label for="pname"> installment amt:</label>
+                            <input type="text" name="install" data-bvalidator="required" class="form-control" id="amt">
+                        </div>
+
+                        <div>
+                            <div>
+                                <input type="hidden" value="" name="userid" id="hid" />
+                                @*var p = ViewData["uid"] as AMC.EDM.User_regis;*@
+                                @*<input type="hidden" value="@p.user_id" name="userid" id="hid" />*@
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <input type="text" name="pdesc" data-bvalidator="required" class="form-control" placeholder="Enter Plan Description">
+                        </div>
+                        <div class="form-group">
+                            <label>Extra Charge:</label>
+                            <input type="text" name="chrge" data-bvalidator="number,required" class="form-control" id="pbenifits" placeholder="Enter Plan Name">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- page end-->
+</div>
+
+<script src="~/alert.js.txt"></script>
+@if (ViewBag.msg != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal({
+                title: "@ViewBag.msg",
+                icon: "success",
+            });
+        };
+    </script>
+}

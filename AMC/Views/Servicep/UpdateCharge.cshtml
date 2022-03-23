@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "UpdateCharge";
+    Layout = "~/Views/Shared/sproviderlayout.cshtml";
+}
+
+<h2>UpdateCharge</h2>
+
+
+<div class="form-w3layouts">
+    <!-- page start-->
+    <!-- page start-->
+    <div class="row">
+        <div class="col-lg-12">
+            <header class="panel-heading">
+                Update Service Charge
+            </header>
+            <div class="panel-body">
+                <div class="position-center">
+                    <link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+                    <script src="~/bvalidator/jquery-1.11.0.min.js"></script>
+                    <script src="~/bvalidator/jquery.bvalidator.js"></script>
+
+                    <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $('#form2').bValidator();
+                                    });
+                    </script>
+
+                    @using (Html.BeginForm("UpdateCharge", "Servicep", FormMethod.Post, new { @id = "form2" }))
+                    {
+                        var p = ViewData["temp"] as AMC.EDM.Charge_rate;
+                     <input type="hidden" name="cid" value="@p.charge_id"/>
+                        <div class="form-group">
+                            <label>Amount:</label>
+                            
+                            <input type="text" class="form-control" value="@p.amount" name="amount">
+                        </div>
+                      
+                     
+                        <input type="submit" name="submit" value="Submit" />
+
+                    }
+
+                </div>
+
+            </div>
+
+
+        </div>
+      
+    </div>
+    
+
+
+    <!-- page end-->
+</div>
+<script src="~/alert.js.txt"></script>
+@if (ViewBag.msg != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal({
+                title: "@ViewBag.msg",
+                icon: "success",
+            });
+        };
+    </script>
+}

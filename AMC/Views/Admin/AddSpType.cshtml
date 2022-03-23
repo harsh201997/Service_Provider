@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "AddCity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-w3layouts">
+    <!-- page start-->
+    <!-- page start-->
+  
+    <link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+    <script src="~/bvalidator/jquery-1.11.0.min.js"></script>
+    <script src="~/bvalidator/jquery.bvalidator.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#form1').bValidator();
+    });
+    </script>
+    
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                       Add Services
+                    </header>
+                    <div class="panel-body">
+                        <div class="position-center">
+                          @using (Html.BeginForm("AddSpType","Admin",FormMethod.Post,new {@id="form1"}))
+                          {
+
+                                <div class="form-group">
+                                    <label>Service Name:</label>
+                                    <input type="text" class="form-control" data-bvalidator="required" name="sptype" placeholder="Service Provider Type">
+                                   
+                                </div>
+                                
+                                <input type="submit" value="Submit" class="btn btn-info"/>
+                             
+                          }
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+
+    <!-- page end-->
+</div>
+<script src="~/alert.js.txt"></script>
+
+@if (ViewBag.msg != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal({
+                title: "@ViewBag.msg",
+                icon: "success",
+            });
+        };
+    </script>
+}

@@ -1,0 +1,191 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <title> Utility Provider</title>
+    <meta name="keywords" content="General Application Form Responsive widget, Flat Web Templates, Android Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="~/Registrationpage/css/style.css" type="text/css" media="all">
+
+    <!-- google fonts  -->
+    <link href="//fonts.googleapis.com/css?family=Alegreya+Sans:100,100i,300,300i,400,400i,500,500i,700,700i,800,800i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+
+</head>
+<body>
+
+    <link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/bvalidator/jquery.bvalidator.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#form2').bValidator();
+
+            $("#city").change(function () {
+
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/getdata",
+                    data: { "cid": $("#city").val() },
+                    success: function (data) {
+                        $("#Area").empty();
+                        $.each(data, function (key, dept) {
+
+                            $("#Area").append("<option value=" + dept.area_id + ">" + dept.area_name + "</option>")
+
+                        })
+                    }
+                })
+            });
+        })
+
+    </script>
+
+    <div class="w3ls-banner">
+        <div class="heading">
+            <h1>Registration Form</h1>
+        </div>
+        <div class="container">
+            <div class="heading">
+                <h2>Please Enter Your Details</h2>
+                <p>Fill the application form below and submit.</p>
+            </div>
+            <div class="agile-form">
+
+
+
+                @using (Html.BeginForm("UserRegistration", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form2" }))
+                {
+
+
+                    <ul class="field-list">
+                        <li class="name">
+                            <label class="form-label"> Name <span class="form-required"> * </span></label>
+                            <div class="form-input add">
+                                <span class="form-sub-label">
+                                    <input type="text" name="firstname" placeholder="First Name" data-bvalidator="required">
+                                </span>
+                                <span class="form-sub-label">
+                                    <input type="text" name="lastname" placeholder="Last Name" data-bvalidator="required">
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label"> E-Mail Address <span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="email" name="email" data-bvalidator="email,required" placeholder="Mail@example.com">
+
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label">User Image<span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="file" data-bvalidator="extension[jpg],required" name="file" placeholder="logo">
+
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label">City Name:<span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <select id="city" name="city" data-bvalidator="required">
+                                    <option value="">--Select--</option>
+                                    @foreach (var item in ViewData["city"] as List<AMC.EDM.City_master>)
+                                    {
+                                        <option value="@item.city_id">@item.city_name</option>
+                                    }
+
+                                </select>
+
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label">Area Name:<span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <select name="area" id="Area" data-bvalidator="required">
+                                    <option value="">Select</option>
+
+
+                                </select>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <label class="form-label"> Password <span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="password" name="password" data-bvalidator="required" placeholder="Password">
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <label class="form-label"> Contact Number <span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="text" name="mobno" placeholder="Phone Number" data-bvalidator="min[11],required">
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label"> Gender <span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="radio" name="gender" value="Male" />Male
+                                <input type="radio" name="gender" value="Female" />Female
+
+                            </div>
+                        </li>
+
+                        <li>
+                        </li>
+                        <li>
+                            <label class="form-label">
+                                Address
+                                <span class="form-required"> * </span>
+                            </label>
+                            <div class="form-input">
+
+                                <textarea name="address" data-bvalidator="required" rows="3" placeholder="Street Address "></textarea>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="submit_btn">
+                        <input type="submit" value="Submit">
+
+                    </div>
+
+                    <script type="text/javascript">
+                        function Validate() {
+                            var password = document.getElementById("password").value;
+                            var confirmPassword = document.getElementById("cpassword").value;
+                            if (password != confirmPassword) {
+                                alert("Passwords do not match.");
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
+
+
+
+
+
+
+
+                }
+
+            </div>
+        </div>
+        <div class="copyright">
+            <p>©2022 Utility Provider Service. All rights reserved</a></p>
+        </div>
+    </div>
+</body>
+</html>

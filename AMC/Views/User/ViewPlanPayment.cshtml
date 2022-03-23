@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "ViewPlanPayment";
+    Layout = "~/Views/Shared/customerlayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+<script> $(document).ready(function () {
+   
+    
+
+     $("#plan").change(function () {
+
+         $.ajax({
+             type: "GET",
+             url: "/User/getdata3",
+             data: { "cid": $("#plan").val() },
+             success: function (data) {
+                 $("#tb").empty();
+
+                 $("#tb").append("<thead><tr><th data-breakpoints='x'>Plan Name</th> <th data-breakpoints='xs'>Mobile No</th> <th data-breakpoints='xs'>Total Service</th><th data-breakpoints='xs'>service Date</th><th data-breakpoints='xs'>Plan amount</th><th data-breakpoints='xs'>Remain amount</th>   <th data-breakpoints='xs'>Installment</th></tr></thead>  <tbody>");
+               
+                 $.each(data, function (key, dept) {
+
+                     $("#tb").append(" <tr data-expanded='true'><td>" + dept.plan_name + "</td><td>" + dept.sp_mobile + "</td><td>" + dept.no_of_services + "</td><td>" + getdate( dept.service_date) + "</td> <td>" + dept.charges + "</td> <td>" + dept.remainpayment + "</td><td>" + dept.installment_amount + "</td></tr>")
+                     
+
+                 })
+
+                 $("#tb").append("</tbody>")
+             }
+
+
+
+
+
+         })
+
+
+     });
+ })
+
+    function getdate(dateString1)
+    {
+        var dateString = dateString1.substr(6);
+        var currentTime = new Date(parseInt(dateString));
+        var month = currentTime.getMonth() + 1;
+        var day = currentTime.getDate();
+        var year = currentTime.getFullYear();
+        var date = day + "/" + month + "/" + year;
+        return date
+    }
+</script>
+ 
+
+
+        
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Plan Payment detail
+        </div>
+        <div>
+            <script>
+  $(document).ready(function () {
+      $('#tb').DataTable();
+  });
+            </script>
+
+            <link href="~/jquery.dataTables.min.css" rel="stylesheet" />
+            <script src="~/jquery.dataTables.min.js"></script>
+               @ViewBag.total
+               @ViewBag.rem
+
+
+            <select id="plan">
+                <option value="">Select</option>
+                @foreach (var item in ViewData["temp2"] as List<AMC.Models.UComplaint>)
+                {
+                    <option value="@item.plan_id">@item.plan_name</option>
+                }
+            </select>
+          
+
+            <table id="tb" class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+               
+                   
+                  
+                
+            </table>
+          
+        </div>
+    </div>
+</div>

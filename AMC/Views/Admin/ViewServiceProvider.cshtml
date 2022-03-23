@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "ViewSp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Service Provider Data
+        </div>
+        <div>
+            <script>
+    $(document).ready(function () {
+        $('#tb').DataTable();
+    });
+            </script>
+
+            <link href="~/jquery.dataTables.min.css" rel="stylesheet" />
+            <script src="~/jquery.dataTables.min.js"></script>
+            <table id="tb" class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                <thead>
+                    <tr>
+
+                        <th>First-Name</th>
+                        <th>Mobile-No</th>
+                        <th>Email-ID</th>
+                        <th>Service</th>
+                        <th>Logo</th>
+                        <th data-breakpoints="xs">Status</th>
+                        <th data-breakpoints="xs sm md">Action</th>
+                        <th data-breakpoints="xs">Block</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["temp"] as List<AMC.Models.Viewsp>)
+                    {
+
+                        <tr data-expanded="true">
+
+                            <td>@item.sp_fname</td>
+                            <td>@item.sp_mobile</td>
+                            <td>@item.sp_email</td>
+                            <td>@item.sptype_name</td>
+                            <td><img src="@item.sp_logo" height="100" width="100" /></td>
+                            <td>@item.sp_status</td>
+                            <td><a href="/Admin/Approve/@item.sp_id" onclick="return confirm('Are you sure? You want to Approve this Service Provider?');" class="btn btn-warning">Approve</a></td>
+                            <td><a href="/Admin/Block/@item.sp_id" onclick="return confirm('Are you sure? You want to Block this Service Provider?');" class="btn btn-danger">Block</a></td>
+
+                        </tr>
+
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

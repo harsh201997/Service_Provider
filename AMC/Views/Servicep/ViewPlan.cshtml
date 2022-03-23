@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "ViewSp";
+    Layout = "~/Views/Shared/sproviderlayout.cshtml";
+}
+
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+           Plans Detail
+        </div>
+        <div>
+            <script>
+    $(document).ready(function () {
+        $('#tb').DataTable();
+    });
+            </script>
+
+            <link href="~/jquery.dataTables.min.css" rel="stylesheet" />
+            <script src="~/jquery.dataTables.min.js"></script>
+            <table id="tb" class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                <thead>
+                    <tr>
+                        <th>Plan Name</th>
+                        <th>Charges</th>
+                        <th data-breakpoints="xs">Status</th>
+                        <th data-breakpoints="xs sm md">Delete</th>
+                        <th data-breakpoints="xs">Update</th>
+
+                        <th data-breakpoints="xs">Closed</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["temp"] as List<AMC.EDM.Tbl_plan>)
+                    {
+
+                        <tr data-expanded="true">
+                            <td>@item.plan_name</td>
+                            <td>@item.charges</td>
+                            <td>@item.plan_status</td>
+                            <td><a href="/Servicep/DeletePlan/@item.plan_id" onclick="return confirm('Are you sure? You want to Delete this record?');" class="btn btn-danger">Delete</a></td>
+                            <td><a href="/Servicep/UpdatePlan/@item.plan_id" onclick="return confirm('Are you sure? You want to Edit this record?');" class="btn btn-warning">Edit</a></td>
+
+                            <td><a href="/Servicep/ClosedPlan/@item.plan_id" onclick="return confirm('Are you sure? You want to Closed this record?');" class="btn btn-danger">Closed</a></td>
+
+                        </tr>
+
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

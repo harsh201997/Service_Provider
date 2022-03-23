@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "ViewServices";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+<div class="w3ls-section plans">
+    <div class="container">
+        <h4 class="main-title">Services</h4>
+        <div class="services-main">
+            <!-- maintenance essential plan -->
+            <div class="col-md-12 col-sm-12 w3_agile-plan-grid">
+                <div class="pricing_grid_content">
+                   
+                  
+                    @foreach (var item in ViewData["temp"] as List<AMC.EDM.ServiceproviderType>)
+                    {
+
+                    <ul class="w3_count">
+                        <li>
+                            <span class="fa fa-check" aria-hidden="true"></span>
+                            <p>@item.sptype_name</p>
+                        </li>
+                       
+                    </ul>
+                    }
+              
+                </div>
+            </div>
+          
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</div>

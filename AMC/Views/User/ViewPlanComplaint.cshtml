@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "ViewPlanComplaint";
+    Layout = "~/Views/Shared/customerlayout.cshtml";
+}
+
+
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Plan Complain
+        </div>
+        <div>
+            <script>
+  $(document).ready(function () {
+      $('#tb').DataTable();
+  });
+            </script>
+
+            <link href="~/jquery.dataTables.min.css" rel="stylesheet" />
+            <script src="~/jquery.dataTables.min.js"></script>
+            <table id="tb" class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                <thead>
+                    <tr>
+                        <th data-breakpoints="xs">Service Provider</th>
+                        <th data-breakpoints="xs">Plan Name</th>
+                        <th data-breakpoints="xs">Status</th>
+                        <th data-breakpoints="xs">Complaint Date</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["temp"] as List<AMC.Models.ViewComplaint>)
+                    {
+
+                        <tr data-expanded="true">
+                            <td>@item.sp_fname @item.sp_lname</td>
+                            <td>@item.plan_name</td>
+                            <td>@item.status</td>
+                            <td>@item.date</td>
+
+
+
+
+                        </tr>
+
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

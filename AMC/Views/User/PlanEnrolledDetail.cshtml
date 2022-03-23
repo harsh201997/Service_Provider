@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "ViewPlanEnrolled";
+    Layout = "~/Views/Shared/customerlayout.cshtml";
+}
+
+
+
+
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Plan Enrolled Detail
+        </div>
+        <div>
+            <table class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                <thead>
+                    <tr>
+                      
+                       
+                        <th data-breakpoints="xs">Service Provider Name:</th>
+                        <th data-breakpoints="xs">Plan-Duration</th>
+                        <th data-breakpoints="xs">Charges</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["temp"] as List<AMC.Models.PlanEnroll>)
+                    {
+
+                        <tr data-expanded="true">
+                           
+                            <td>@item.sp_fname @item.sp_lname</td>
+                            <td>@item.plan_duration</td>
+                            <td>@item.charges</td>
+                           
+
+
+                        </tr>
+
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

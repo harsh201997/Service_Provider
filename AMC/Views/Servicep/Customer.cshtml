@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "ViewSp";
+    Layout = "~/Views/Shared/sproviderlayout.cshtml";
+}
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Enrolled Plan Details
+        </div>
+        <div>
+            <script>
+  $(document).ready(function () {
+      $('#tb').DataTable();
+  });
+            </script>
+
+            <link href="~/jquery.dataTables.min.css" rel="stylesheet" />
+            <script src="~/jquery.dataTables.min.js"></script>
+            <table id="tb" class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                <thead>
+                    <tr>
+                        <th data-breakpoints="xs">Customer Name</th>
+                        <th data-breakpoints="xs">Plan Name</th>
+                        <th data-breakpoints="xs">Status</th>
+                        <th data-breakpoints="xs">Start Date</th>
+                        <th data-breakpoints="xs">End Date</th>
+                        <th data-breakpoints="xs">Change Status</th>
+                        <th data-breakpoints="xs">Customer Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["temp"] as List<AMC.Models.plandisp>)
+                    {
+
+                        <tr data-expanded="true">
+                            <td>@item.fname</td>
+                            <td>@item.plan_name</td>
+                            <td>@item.plan_status</td>
+                            <td>@item.plan_date</td>
+                            <td>@item.planend_date</td>
+
+                            <td><a href="/Servicep/ExpiredPlanEnroll/@item.planenroll_id">Expired</a></td>
+                            <td><a href="/Servicep/ViewCustomerDetail/@item.user_id">Customer Detail</a></td>
+                        </tr>
+
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <title>Utility Provider Services</title>
+    <meta name="keywords" content="General Application Form Responsive widget, Flat Web Templates, Android Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="~/Registrationpage/css/style.css" type="text/css" media="all">
+
+    <!-- google fonts  -->
+    <link href="//fonts.googleapis.com/css?family=Alegreya+Sans:100,100i,300,300i,400,400i,500,500i,700,700i,800,800i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+
+</head>
+<body>
+    <link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/bvalidator/jquery.bvalidator.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#form2').bValidator();
+        })
+    </script>
+    <div class="w3ls-banner">
+        <div class="heading">
+            <h1>Registration Form</h1>
+        </div>
+        <div class="container">
+            <div class="heading">
+                <h2>Please Enter Your Details</h2>
+                <p>Fill the application form below and submit.</p>
+            </div>
+            <div class="agile-form">
+                @using (Html.BeginForm("SpRegistration", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form2" }))
+                {
+
+
+                    <ul class="field-list">
+                        <li class="name">
+                            <label class="form-label"> Name <span class="form-required"> * </span></label>
+                            <div class="form-input add">
+                                <span class="form-sub-label">
+                                    <input type="text" name="firstname" placeholder="First Name" data-bvalidator="required">
+                                </span>
+                                <span class="form-sub-label">
+                                    <input type="text" name="lastname" placeholder="Last Name" data-bvalidator="required">
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label"> E-Mail Address <span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="email" name="email" data-bvalidator="email,required" placeholder="Mail@example.com">
+
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label">Logo<span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="file" data-bvalidator="extension[jpg],required" name="file" placeholder="logo">
+
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label">Service Name<span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <select name="spid" data-bvalidator="required">
+                                    <option value="">Select</option>
+                                    @foreach (var item in ViewData["sp_type"] as List<AMC.EDM.ServiceproviderType>)
+                                    {
+                                        <option value="@item.sptype_id">@item.sptype_name</option>
+                                    }
+
+                                </select>
+
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label"> Password <span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="password" data-bvalidator="required" name="password" placeholder="Password">
+
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label"> Contact Number <span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="text" name="mobno" data-bvalidator="min[11],required" placeholder="Phone Number">
+                            </div>
+                        </li>
+                        <li>
+                            <label class="form-label"> Gender <span class="form-required"> * </span></label>
+                            <div class="form-input">
+                                <input type="radio" name="gender" value="Male" />Male
+                                <input type="radio" name="gender" value="Female" />Female
+
+                            </div>
+                        </li>
+
+                        <li>
+
+                        </li>
+                        <li>
+                            <label class="form-label">
+                                Address
+                                <span class="form-required"> * </span>
+                            </label>
+                            <div class="form-input add">
+                                <span class="form-sub-label">
+                                    <textarea name="address" rows="4" placeholder="Street Address " data-bvalidator="required"></textarea>
+
+                                </span>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="submit_btn">
+                        <input type="submit" value="Submit">
+                    </div>
+
+
+
+
+
+                }
+
+            </div>
+        </div>
+        <div class="copyright">
+            <p><a>©2022 Utility Provider Service. All rights reserved</a></p>
+        </div>
+    </div>
+</body>
+</html>

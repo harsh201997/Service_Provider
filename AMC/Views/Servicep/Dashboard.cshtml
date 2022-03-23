@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/sproviderlayout.cshtml";
+}
+
+<h2>Dashboard</h2>
+<div class="market-updates">
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-2">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-eye"> </i>
+            </div>
+            <a href="~/Servicep/ViewPlan">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Plans Deatil</h4>
+                    <h3>@ViewBag.cnt</h3>
+                    <p>Plan Description</p>
+                </div>
+            </a>   
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-users"></i>
+            </div>
+            <a href="~/Servicep/Customer">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Customers</h4>
+                    <h3>@ViewBag.cntuser</h3>
+                    <p>Customer Details</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-3">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-usd"></i>
+            </div>
+            <a href="/Servicep/ViewPendingComplaint">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Complaints</h4>
+                    <h3>@ViewBag.totcomp</h3>
+                    <p>Pending Complaints</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-4">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </div>
+            <a href="/Servicep/TodayComplain">
+                <div class="col-md-8 market-update-left">
+                    <h4>Today's Complaints</h4>
+                    <h3>@ViewBag.tottodaycomp</h3>
+                    <p> Complain details</p>
+                </div>
+            </a>
+           
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-4">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </div>
+            <a href="/Servicep/TodayInqury">
+                <div class="col-md-8 market-update-left">
+                    <h4>Today's Inquiry</h4>
+                    <h3>@ViewBag.TodInq</h3>
+                    <p> Pending Inquiry</p>
+                </div>
+            </a>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-4">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </div>
+            <a href="/Servicep/ViewServiceInquiry">
+                <div class="col-md-8 market-update-left">
+                    <h4>Pending Inquiry</h4>
+                    <h3>@ViewBag.PendInq</h3>
+                    <p>  Service Inquiry</p>
+                </div>
+            </a>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-4">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </div>
+            <a href="/Servicep/TotalInquiry">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Inquiry</h4>
+                    <h3>@ViewBag.TotInq</h3>
+                    <p> Inquiry details</p>
+                </div>
+            </a>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "ViewPlanEnrolled";
+    Layout = "~/Views/Shared/customerlayout.cshtml";
+}
+
+
+
+
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Plan Enrolled Detail
+        </div>
+        <div>
+            <script>
+  $(document).ready(function () {
+      $('#tb').DataTable();
+  });
+            </script>
+
+            <link href="~/jquery.dataTables.min.css" rel="stylesheet" />
+            <script src="~/jquery.dataTables.min.js"></script>
+            <table id="tb" class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                <thead>
+                    <tr>
+                        <th data-breakpoints="xs">Plan Name</th>
+                        <th data-breakpoints="xs">Status</th>
+                        <th data-breakpoints="xs">Starting Date</th>
+                        <th data-breakpoints="xs">End Date</th>
+
+                        <th data-breakpoints="xs">More Detail</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["temp"] as List<AMC.Models.PlanEnroll>)
+                    {
+
+                        <tr data-expanded="true">
+                            <td>@item.plan_name</td>
+                            <td>@item.plan_status</td>
+                            <td>@item.plan_date</td>
+                            <td>@item.planend_date</td>
+
+                            <td><a href="/User/PlanEnrolledDetail/@item.planenroll_id">More Detail</a></td>
+
+
+                        </tr>
+
+                    }
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/customerlayout.cshtml";
+}
+
+
+<div class="market-updates">
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-2">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-eye"> </i>
+            </div>
+            <a href="~/User/ViewPlanEnrolled">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Plans</h4>
+                    <h3>@ViewBag.cnteplan</h3>
+                    <p>Enrolled Plan</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-users"></i>
+            </div>
+            <a href="~/User/ViewPlanComplaint">
+                <div class="col-md-8 market-update-left">
+                    <h4>Complaints</h4>
+                    <h3>@ViewBag.cntcomplaint</h3>
+                    <p>Complaint Details</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-2">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-eye"> </i>
+            </div>
+            <a href="~/User/ViewPendingInquiry">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Inquiry</h4>
+                    <h3>@ViewBag.PendInq</h3>
+                    <p>Pending Inquiry </p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-users"></i>
+            </div>
+            <a href="~/User/Inprocessinquiry">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Inquiry</h4>
+                    <h3>@ViewBag.inprocessinq</h3>
+                    <p>In-Process</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+
+   
+    <div class="clearfix"> </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "UpdateSpType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update City</h2>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Update City
+            </header>
+            <div class="panel-body">
+                <div class="position-center">
+                    <link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+                    <script src="~/bvalidator/jquery-1.11.0.min.js"></script>
+                    <script src="~/bvalidator/jquery.bvalidator.js"></script>
+
+                    <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $('#form2').bValidator();
+                                    });
+                    </script>
+                    @using (Html.BeginForm("UpdateCity", "Admin", FormMethod.Post, new { @id = "form2" }))
+                    {
+                        var p = ViewData["temp"] as AMC.EDM.City_master;
+
+
+
+                        <div class="form-group">
+                            <label>City Name</label>
+                            <input type="text" data-bvalidator="required"  class="form-control" value="@p.city_name" name="city_name">
+                            <input type="hidden" value="@p.city_id" name="city_id" />
+
+                        <input type="submit" value="Submit" class="btn btn-info" />
+                        @ViewBag.msg
+
+                    }
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    
+</div>

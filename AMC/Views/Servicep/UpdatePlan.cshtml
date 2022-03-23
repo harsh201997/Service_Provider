@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "AddPlan";
+    Layout = "~/Views/Shared/sproviderlayout.cshtml";
+}
+
+
+    <div class="form-w3layouts">
+        <!-- page start-->
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+               
+                    <header class="panel-heading">
+                        Update Plan 
+                    </header>
+                    <div class="panel-body">
+                        <div class="position-center">
+                            <link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+                            <script src="~/bvalidator/jquery-1.11.0.min.js"></script>
+                            <script src="~/bvalidator/jquery.bvalidator.js"></script>
+
+                            <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $('#form2').bValidator();
+                                    });
+                            </script>
+                            @using (Html.BeginForm("UpdatePlan", "Servicep", FormMethod.Post, new { @id = "form2" }))
+                            {
+                                var p = ViewData["temp"] as AMC.EDM.Tbl_plan;
+                                <div class="form-group">
+                                    <label>Plan Name:</label>
+                                    <input type="text" class="form-control" value="@p.plan_name" name="pname" data-bvalidator="required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Plan Description:</label>
+                                    <textarea class="form-control" name="pdesc" rows="5" data-bvalidator="required">@p.plan_description</textarea>
+                                    @*<input type="text" class="form-control" value="@p.plan_description" name="pdesc" placeholder="Enter Plan Description" data-bvalidator="required">*@
+                                </div>
+                                <div class="form-group">
+                                    <label>Plan Benifits:</label>
+                                    <textarea class="form-control" name="benifits" rows="5" data-bvalidator="required">@p.plan_benifits</textarea>
+                                    @*<input type="text" class="form-control" value="@p.plan_benifits" name="benifits" placeholder="Enter Plan Name" data-bvalidator="required">*@
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Charges:</label>
+                                    <input type="text" class="form-control" value="@p.charges" name="charge"  data-bvalidator="number,required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Plan Duration:</label>
+                                    <select name="duration" data-bvalidator="required" class="form-control">
+                                        <option value="">--Select--</option>
+                                        <option value="1 Year">1 Year</option>
+                                        <option value="6 months">6 months</option>
+                                        <option value="4 Months">4 Months</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" value="@p.plan_id" name="plan_id" />
+                                
+                                <input type="submit" name="submit" value="Submit" />
+                            }
+
+                        </div>
+
+                    </div>
+               
+
+            </div>
+           
+        </div>
+        
+
+        <!-- page end-->
+    </div>

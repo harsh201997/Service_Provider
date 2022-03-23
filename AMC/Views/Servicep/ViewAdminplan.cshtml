@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "ViewAdminplan";
+    Layout = "~/Views/Shared/sproviderlayout.cshtml";
+}
+
+<h2>ViewAdminplan</h2>
+
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Plan Detail
+        </div>
+        <div>
+            <script>
+                $(document).ready(function () {
+                    $('#tb').DataTable();
+                });
+            </script>
+
+            <link href="~/jquery.dataTables.min.css" rel="stylesheet" />
+            <script src="~/jquery.dataTables.min.js"></script>
+            <table id="tb" class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                <thead>
+                    <tr>
+                        <th>Plan Name</th>
+                        <th>Charges</th>
+                        <th data-breakpoints="xs sm md">Detail</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["temp"] as List<AMC.EDM.AdminSp_plan>)
+                    {
+
+                        <tr data-expanded="true">
+                            <td>@item.sub_name</td>
+                            <td>@item.amount</td>
+
+                            <td><a href="/Servicep/PlanDetail/@item.sub_id">Detail</a></td>
+
+
+                        </tr>
+
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

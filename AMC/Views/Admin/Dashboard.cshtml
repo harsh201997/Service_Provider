@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="market-updates">
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-2">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-eye"> </i>
+            </div>
+            <a href="ViewSp">
+                <div class="col-md-8 market-update-left">
+                    <h4>Service Provider</h4>
+                    <h3>@ViewBag.cntsp </h3>
+                    <p>Provider</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-users"></i>
+            </div>
+            <a href="ViewUser">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Customers</h4>
+                    <h3>@ViewBag.cnt</h3>
+                    <p>User Details</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-3">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-usd"></i>
+            </div>
+            <a href="ViewPlanComplaint">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Complaints</h4>
+                    <h3>@ViewBag.cntcomplaint</h3>
+                    <p>Complaints</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-2">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-eye"> </i>
+            </div>
+            <a href="ViewPendingComplaint">
+                <div class="col-md-8 market-update-left">
+                    <h4>Pending Complaints</h4>
+
+                    <h3>@ViewBag.cntpcomp</h3>
+                    <p>Complaint Details</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+   
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-4">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-file" aria-hidden="true"></i>
+            </div>
+            <a href="~/Admin/TotalInquiry">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Inquiry</h4>
+                    <h3>@ViewBag.TotInq</h3>
+                <p>Inquiry</p>
+            </div>
+        </a>
+          
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+   
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-users"></i>
+            </div>
+            <a href="ViewSptype">
+                <div class="col-md-8 market-update-left">
+                    <h4>Total Services</h4>
+                    <h3>@ViewBag.cntservice</h3>
+                    <p>User Details</p>
+                </div>
+            </a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+   
+    <div class="clearfix"> </div>
+</div>

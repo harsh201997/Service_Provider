@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "AddCity";
+    Layout = "~/Views/Shared/customerlayout.cshtml";
+}
+
+<div class="form-w3layouts">
+    <!-- page start-->
+    <!-- page start-->
+
+    <link href="~/bvalidator/bvalidator.css" rel="stylesheet" />
+    <script src="~/bvalidator/jquery-1.11.0.min.js"></script>
+    <script src="~/bvalidator/jquery.bvalidator.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#form2').bValidator();
+    });
+    </script>
+    @using (Html.BeginForm("AddReview", "User", FormMethod.Post, new { @id = "form2" }))
+    {
+        <input type="hidden" value="" name="userreq" />
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <header class="panel-heading">
+                    Add Review
+                </header>
+                <div class="panel-body">
+                    <div class="position-center">
+                       
+                        <input type="hidden" name="spid" value="@ViewBag.spid">
+                       
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Review Description:</label>
+                            <textarea class="form-control" data-bvalidator="required" rows="5" name="desc" placeholder=""></textarea>
+                            @*<input type="text" class="form-control" name="desc" placeholder="Complaint">*@
+
+                        </div>
+                      
+                        <input type="submit" value="submit" />
+
+                    </div>
+
+                </div>
+
+
+            </div>
+           
+        </div>
+
+
+    }
+
+    
+
+    <!-- page end-->
+</div>
+
+<script src="~/alert.js.txt"></script>
+@if (ViewBag.msg != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal({
+                title: "@ViewBag.msg",
+                icon: "success",
+            });
+        };
+    </script>
+}

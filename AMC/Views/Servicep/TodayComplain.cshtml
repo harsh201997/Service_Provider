@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Complain Detail";
+    Layout = "~/Views/Shared/sproviderlayout.cshtml";
+}
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Complain Detail
+        </div>
+        <div>
+            <table class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+                <thead>
+                    <tr>
+                        <th data-breakpoints="xs">Customer Name</th>
+                        <th data-breakpoints="xs">Plan Name</th>
+                        <th data-breakpoints="xs">Status</th>
+                        <th data-breakpoints="xs">Complaint Date</th>
+                        <th data-breakpoints="xs">Description</th>
+                        <th data-breakpoints="xs">Complain Status</th>
+                        <th data-breakpoints="xs">Customer Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["temp"] as List<AMC.Models.ViewComplaint>)
+                    {
+
+                        <tr data-expanded="true">
+                            <td>@item.fname</td>
+                            <td>@item.plan_name</td>
+                            <td>@item.status</td>
+                            <td>@item.date</td>
+                            <td>@item.description</td>
+                            <td><a href="/Servicep/DoneComplaint/@item.complaint_id">Done</a></td>
+                            <td><a href="/Servicep/UserDetail/@item.user_id">Customer Detail</a></td>
+
+                        </tr>
+
+                    }
+                 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
